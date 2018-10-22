@@ -18,6 +18,7 @@ set (SOURCES
     ${SOURCES_DIR}/ui/subpanels/controlsubpanel.cpp
     ${SOURCES_DIR}/ui/panels/connectpanel.cpp
     ${SOURCES_DIR}/ui/panels/streampanel.cpp
+    ${SOURCES_DIR}/ui/windows/mainwindow.cpp
     )
 
 set (HEADERS
@@ -27,6 +28,7 @@ set (HEADERS
     ${HEADERS_DIR}/ui/subpanels/controlsubpanel.hpp
     ${HEADERS_DIR}/ui/panels/connectpanel.hpp
     ${HEADERS_DIR}/ui/panels/streampanel.hpp
+    ${HEADERS_DIR}/ui/windows/mainwindow.hpp
     )
 
 # App
