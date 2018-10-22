@@ -8,6 +8,7 @@ class VlcInstance;
 class VlcMedia;
 class VlcMediaPlayer;
 class VlcWidgetVideo;
+class VlcWidgetVolumeSlider;
 
 class StreamClientManager : public QObject
 {
@@ -20,6 +21,7 @@ public:
     static StreamClientManager &getInstance();
 
     void setVideoWidget(VlcWidgetVideo *widget);
+    void setVolumeWidget(VlcWidgetVolumeSlider *widget);
 
     void open(const QString &ip, int port);
 

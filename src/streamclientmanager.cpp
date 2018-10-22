@@ -7,6 +7,7 @@
 #include <VLCQtCore/MediaPlayer.h>
 #include <VLCQtCore/Error.h>
 #include <VLCQtWidgets/WidgetVideo.h>
+#include <VLCQtWidgets/WidgetVolumeSlider.h>
 
 StreamClientManager &StreamClientManager::getInstance()
 {
@@ -18,6 +19,11 @@ StreamClientManager &StreamClientManager::getInstance()
 void StreamClientManager::setVideoWidget(VlcWidgetVideo *widget)
 {
     m_mediaPlayer->setVideoWidget(widget);
+    widget->setMediaPlayer(m_mediaPlayer);
+}
+
+void StreamClientManager::setVolumeWidget(VlcWidgetVolumeSlider *widget)
+{
     widget->setMediaPlayer(m_mediaPlayer);
 }
 
