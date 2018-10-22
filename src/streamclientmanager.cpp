@@ -20,11 +20,6 @@ void StreamClientManager::open(const QString &ip, int port)
     m_mediaPlayer->open(m_media);
 }
 
-void StreamClientManager::play()
-{
-    m_mediaPlayer->play();
-}
-
 void StreamClientManager::pause()
 {
     m_mediaPlayer->pause();

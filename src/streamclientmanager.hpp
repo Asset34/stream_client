@@ -19,7 +19,7 @@ public:
     static StreamClientManager &getInstance();
 
     void open(const QString &ip, int port);
-    void play();
+
     void pause();
     void resume();
     void stop();
