@@ -12,9 +12,13 @@ set(CMAKE_AUTOMOC ON)
 
 set (SOURCES
     ${SOURCES_DIR}/main.cpp
+    ${SOURCES_DIR}/streamclientmanager.cpp
+    ${SOURCES_DIR}/ui/widgets/ipinputbox.cpp
     )
 
 set (HEADERS
+    ${HEADERS_DIR}/streamclientmanager.hpp
+    ${HEADERS_DIR}/ui/widgets/ipinputbox.hpp
     )
 
 # App
