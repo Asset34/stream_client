@@ -10,6 +10,7 @@ ConnectPanel::ConnectPanel(QWidget *parent)
 {
     // Create address subpanel
     m_addressSubpanel = new AddressSubpanel;
+    m_addressSubpanel->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
 
     // Create layout
     m_layout = new QVBoxLayout;
