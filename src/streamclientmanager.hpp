@@ -30,10 +30,10 @@ public:
     void stop();
 
 private:
-    QString buildMRL(const QString ip, int port);
-
     explicit StreamClientManager(QObject *parent = nullptr);
     virtual ~StreamClientManager();
+
+    QString buildMRL(const QString ip, int port);
 
     VlcInstance *m_instance;
     VlcMedia *m_media;
