@@ -31,6 +31,8 @@ void StreamClientManager::open(const QString &ip, int port)
 {
     m_media = new VlcMedia(buildMRL(ip, port), m_instance);
     m_mediaPlayer->open(m_media);
+
+    emit streamOpened();
 }
 
 void StreamClientManager::pause()

@@ -40,6 +40,7 @@ private:
     VlcMediaPlayer *m_mediaPlayer;
 
 signals:
+    void streamOpened();
     void errorOccured(QString error);
 
 };
