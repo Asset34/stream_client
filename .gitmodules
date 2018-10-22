@@ -1,0 +1,3 @@
+[submodule "libs/vlc-qt"]
+	path = libs/vlc-qt
+	url = git@github.com:asset34/vlc-qt.git
