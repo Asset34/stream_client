@@ -6,12 +6,19 @@
 #include <VLCQtCore/Media.h>
 #include <VLCQtCore/MediaPlayer.h>
 #include <VLCQtCore/Error.h>
+#include <VLCQtWidgets/WidgetVideo.h>
 
 StreamClientManager &StreamClientManager::getInstance()
 {
     static StreamClientManager instance;
 
     return instance;
+}
+
+void StreamClientManager::setVideoWidget(VlcWidgetVideo *widget)
+{
+    m_mediaPlayer->setVideoWidget(widget);
+    widget->setMediaPlayer(m_mediaPlayer);
 }
 
 void StreamClientManager::open(const QString &ip, int port)
