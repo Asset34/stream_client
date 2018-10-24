@@ -5,16 +5,17 @@
 
 #include <ui/subpanels/controlsubpanel.hpp>
 
-#include <streamclientmanager.hpp>
+#include <vlcmanager.hpp>
 
 StreamPanel::StreamPanel(QWidget *parent)
     : QWidget(parent)
 {
+    VlcManager &manager = VlcManager::getInstance();
+
     // Create video widget
     m_videoWidget = new VlcWidgetVideo;
     m_videoWidget->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
-    StreamClientManager &streamManager = StreamClientManager::getInstance();
-    streamManager.setVideoWidget(m_videoWidget);
+    manager.setVideoWidget(m_videoWidget);
 
     // Create control subpanel
     m_controlSubpanel = new ControlSubpanel;

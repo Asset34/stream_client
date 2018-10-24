@@ -6,12 +6,13 @@
 #include <ui/panels/streampanel.hpp>
 #include <ui/panels/connectpanel.hpp>
 
-#include <streamclientmanager.hpp>
+#include <vlcmanager.hpp>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
-    StreamClientManager &manager = StreamClientManager::getInstance();
+    VlcManager &manager = VlcManager::getInstance();
+
     QDockWidget *dock;
 
     // Create stream panel
@@ -35,7 +36,7 @@ MainWindow::MainWindow(QWidget *parent)
     resize(900, 500);
 
     // Create connections
-    connect(&manager, &StreamClientManager::errorOccured,
+    connect(&manager, &VlcManager::errorOccured,
             [this](QString error){
         QMessageBox errorBox(this);
 

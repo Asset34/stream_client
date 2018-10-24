@@ -13,7 +13,6 @@ class StreamPanel : public QWidget
 
 public:
     explicit StreamPanel(QWidget *parent = nullptr);
-    virtual ~StreamPanel();
 
 private:
     QVBoxLayout *m_layout;

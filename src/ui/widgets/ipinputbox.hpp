@@ -15,7 +15,6 @@ class IpInputBox : public QWidget
 
 public:
     explicit IpInputBox(QWidget *parent = nullptr);
-    virtual ~IpInputBox();
 
     QString getIp() const;
     int getPort() const;

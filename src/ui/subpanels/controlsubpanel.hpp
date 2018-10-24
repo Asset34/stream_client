@@ -13,7 +13,6 @@ class ControlSubpanel : public QGroupBox
 
 public:
     ControlSubpanel(QWidget *parent = nullptr);
-    virtual ~ControlSubpanel();
 
 private:
     QHBoxLayout *m_layout;

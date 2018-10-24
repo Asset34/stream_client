@@ -1,5 +1,5 @@
-#ifndef STREAMCLIENTMANAGER_HPP
-#define STREAMCLIENTMANAGER_HPP
+#ifndef VLCMANAGER_HPP
+#define VLCMANAGER_HPP
 
 #include <QObject>
 #include <QString>
@@ -10,15 +10,15 @@ class VlcMediaPlayer;
 class VlcWidgetVideo;
 class VlcWidgetVolumeSlider;
 
-class StreamClientManager : public QObject
+class VlcManager : public QObject
 {
     Q_OBJECT
 
 public:
-    StreamClientManager(const StreamClientManager &other) = delete;
-    StreamClientManager &operator=(const StreamClientManager &other) = delete;
+    VlcManager(const VlcManager &other) = delete;
+    VlcManager &operator=(const VlcManager &other) = delete;
 
-    static StreamClientManager &getInstance();
+    static VlcManager &getInstance();
 
     void setVideoWidget(VlcWidgetVideo *widget);
     void setVolumeWidget(VlcWidgetVolumeSlider *widget);
@@ -30,8 +30,8 @@ public:
     void stop();
 
 private:
-    explicit StreamClientManager(QObject *parent = nullptr);
-    virtual ~StreamClientManager();
+    explicit VlcManager(QObject *parent = nullptr);
+    virtual ~VlcManager();
 
     QString buildMRL(const QString ip, int port);
 
@@ -45,4 +45,4 @@ signals:
 
 };
 
-#endif // STREAMCLIENTMANAGER_HPP
+#endif // VLCMANAGER_HPP

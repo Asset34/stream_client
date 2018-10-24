@@ -12,7 +12,6 @@ class ConnectPanel : public QWidget
 
 public:
     explicit ConnectPanel(QWidget *parent = nullptr);
-    virtual ~ConnectPanel();
 
 private:
     QVBoxLayout *m_layout;

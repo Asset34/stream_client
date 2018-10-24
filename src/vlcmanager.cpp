@@ -1,4 +1,4 @@
-#include "streamclientmanager.hpp"
+#include "vlcmanager.hpp"
 
 #include <QString>
 
@@ -9,25 +9,25 @@
 #include <VLCQtWidgets/WidgetVideo.h>
 #include <VLCQtWidgets/WidgetVolumeSlider.h>
 
-StreamClientManager &StreamClientManager::getInstance()
+VlcManager &VlcManager::getInstance()
 {
-    static StreamClientManager instance;
+    static VlcManager instance;
 
     return instance;
 }
 
-void StreamClientManager::setVideoWidget(VlcWidgetVideo *widget)
+void VlcManager::setVideoWidget(VlcWidgetVideo *widget)
 {
     m_mediaPlayer->setVideoWidget(widget);
     widget->setMediaPlayer(m_mediaPlayer);
 }
 
-void StreamClientManager::setVolumeWidget(VlcWidgetVolumeSlider *widget)
+void VlcManager::setVolumeWidget(VlcWidgetVolumeSlider *widget)
 {
     widget->setMediaPlayer(m_mediaPlayer);
 }
 
-void StreamClientManager::open(const QString &ip, int port)
+void VlcManager::open(const QString &ip, int port)
 {
     m_media = new VlcMedia(buildMRL(ip, port), m_instance);
     m_mediaPlayer->open(m_media);
@@ -35,24 +35,24 @@ void StreamClientManager::open(const QString &ip, int port)
     emit streamOpened();
 }
 
-void StreamClientManager::pause()
+void VlcManager::pause()
 {
     m_mediaPlayer->pause();
 }
 
-void StreamClientManager::resume()
+void VlcManager::resume()
 {
     m_mediaPlayer->resume();
 }
 
-void StreamClientManager::stop()
+void VlcManager::stop()
 {
     m_mediaPlayer->stop();
 
     delete m_media;
 }
 
-QString StreamClientManager::buildMRL(const QString ip, int port)
+QString VlcManager::buildMRL(const QString ip, int port)
 {
     QString mrl;
 
@@ -64,7 +64,7 @@ QString StreamClientManager::buildMRL(const QString ip, int port)
     return mrl;
 }
 
-StreamClientManager::StreamClientManager(QObject *parent)
+VlcManager::VlcManager(QObject *parent)
     : QObject(parent),
       m_media(nullptr)
 {
@@ -83,6 +83,6 @@ StreamClientManager::StreamClientManager(QObject *parent)
     });
 }
 
-StreamClientManager::~StreamClientManager()
+VlcManager::~VlcManager()
 {
 }

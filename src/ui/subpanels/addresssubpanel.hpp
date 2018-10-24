@@ -14,7 +14,6 @@ class AddressSubpanel : public QGroupBox
 
 public:
     explicit AddressSubpanel(QWidget *parent = nullptr);
-    virtual ~AddressSubpanel();
 
 private:
     QVBoxLayout *m_mainLayout;

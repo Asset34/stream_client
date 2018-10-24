@@ -4,12 +4,12 @@
 #include <QPushButton>
 #include <VLCQtWidgets/WidgetVolumeSlider.h>
 
-#include <streamclientmanager.hpp>
+#include <vlcmanager.hpp>
 
 ControlSubpanel::ControlSubpanel(QWidget *parent)
     : QGroupBox(parent)
 {
-    StreamClientManager &streamManager = StreamClientManager::getInstance();
+    VlcManager &manager = VlcManager::getInstance();
 
     // Create pause button
     m_pauseButton = new QPushButton("Pause");
@@ -23,7 +23,7 @@ ControlSubpanel::ControlSubpanel(QWidget *parent)
 
     // Create volume slider
     m_volumeSlider = new VlcWidgetVolumeSlider;
-    streamManager.setVolumeWidget(m_volumeSlider);
+    manager.setVolumeWidget(m_volumeSlider);
 
     // Create layout
     m_layout = new QHBoxLayout;
@@ -39,26 +39,26 @@ ControlSubpanel::ControlSubpanel(QWidget *parent)
 
     // Create connections
     connect(m_pauseButton, &QPushButton::clicked,
-            [this, &streamManager](bool checked){
+            [this, &manager](bool checked){
         if (checked) {
-            streamManager.pause();
+            manager.pause();
 
             m_pauseButton->setText("Resume");
         }
         else {
-            streamManager.resume();
+            manager.resume();
 
             m_pauseButton->setText("Resume");
         }
     });
     connect(m_stopButton, &QPushButton::clicked,
-            [this, &streamManager](){
-            streamManager.stop();
+            [this, &manager](){
+            manager.stop();
 
             m_stopButton->setEnabled(false);
     });
-    connect(&streamManager, &StreamClientManager::streamOpened,
-            [this, &streamManager](){
+    connect(&manager, &VlcManager::streamOpened,
+            [this, &manager](){
         m_pauseButton->setEnabled(true);
         m_stopButton->setEnabled(true);
     });

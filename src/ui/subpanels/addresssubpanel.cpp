@@ -6,11 +6,13 @@
 
 #include <ui/widgets/ipinputbox.hpp>
 
-#include <streamclientmanager.hpp>
+#include <vlcmanager.hpp>
 
 AddressSubpanel::AddressSubpanel(QWidget *parent)
     : QGroupBox(parent)
 {
+    VlcManager &manager = VlcManager::getInstance();
+
     // Create ip input box
     m_ipInputBox = new IpInputBox;
 
@@ -35,9 +37,8 @@ AddressSubpanel::AddressSubpanel(QWidget *parent)
 
     // Create connections
     connect(m_connectButton, &QPushButton::clicked,
-            [this](){
-        StreamClientManager &streamManager = StreamClientManager::getInstance();
-        streamManager.open(
+            [this, &manager](){
+        manager.open(
             m_ipInputBox->getIp(),
             m_ipInputBox->getPort()
         );
