@@ -38,7 +38,7 @@ AddressSubpanel::AddressSubpanel(QWidget *parent)
     // Create connections
     connect(m_connectButton, &QPushButton::clicked,
             [this, &manager](){
-        manager.open(
+        manager.openDirect(
             m_ipInputBox->getIp(),
             m_ipInputBox->getPort()
         );

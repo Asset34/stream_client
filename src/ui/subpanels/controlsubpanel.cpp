@@ -57,7 +57,7 @@ ControlSubpanel::ControlSubpanel(QWidget *parent)
 
             m_stopButton->setEnabled(false);
     });
-    connect(&manager, &VlcManager::streamOpened,
+    connect(&manager, &VlcManager::mediaOpened,
             [this, &manager](){
         m_pauseButton->setEnabled(true);
         m_stopButton->setEnabled(true);

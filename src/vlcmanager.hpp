@@ -6,7 +6,10 @@
 
 class VlcInstance;
 class VlcMedia;
+class VlcMediaList;
 class VlcMediaPlayer;
+class VlcMediaDiscoverer;
+class VlcMetaManager;
 class VlcWidgetVideo;
 class VlcWidgetVolumeSlider;
 
@@ -23,7 +26,8 @@ public:
     void setVideoWidget(VlcWidgetVideo *widget);
     void setVolumeWidget(VlcWidgetVolumeSlider *widget);
 
-    void open(const QString &ip, int port);
+    void openDirect(const QString &ip, int port);
+    void openDiscovered(int index);
 
     void pause();
     void resume();
@@ -33,14 +37,23 @@ private:
     explicit VlcManager(QObject *parent = nullptr);
     virtual ~VlcManager();
 
+    void createMedia(const QString &ip, int port);
+    void clearMedia();
+    void resetMedia(const QString &ip, int port);
+
     QString buildMRL(const QString ip, int port);
 
     VlcInstance *m_instance;
     VlcMedia *m_media;
     VlcMediaPlayer *m_mediaPlayer;
+    VlcMediaDiscoverer *m_mediaDiscoverer;
+
+    VlcMediaList *m_discoveredMediaList;
 
 signals:
-    void streamOpened();
+    void mediaOpened();
+    void mediaDiscovered(QString name);
+    void mediaLost(int index);
     void errorOccured(QString error);
 
 };

@@ -4,10 +4,15 @@
 
 #include <VLCQtCore/Instance.h>
 #include <VLCQtCore/Media.h>
+#include <VLCQtCore/MediaList.h>
 #include <VLCQtCore/MediaPlayer.h>
+#include <VLCQtCore/MediaDiscoverer.h>
+#include <VLCQtCore/MetaManager.h>
 #include <VLCQtCore/Error.h>
 #include <VLCQtWidgets/WidgetVideo.h>
 #include <VLCQtWidgets/WidgetVolumeSlider.h>
+
+#include <QDebug>
 
 VlcManager &VlcManager::getInstance()
 {
@@ -27,12 +32,25 @@ void VlcManager::setVolumeWidget(VlcWidgetVolumeSlider *widget)
     widget->setMediaPlayer(m_mediaPlayer);
 }
 
-void VlcManager::open(const QString &ip, int port)
+void VlcManager::openDirect(const QString &ip, int port)
 {
-    m_media = new VlcMedia(buildMRL(ip, port), m_instance);
+    resetMedia(ip, port);
     m_mediaPlayer->open(m_media);
 
-    emit streamOpened();
+    emit mediaOpened();
+}
+
+void VlcManager::openDiscovered(int index)
+{
+    if (index < 0 ||
+        index > m_discoveredMediaList->count()) {
+        return;
+    }
+
+    clearMedia();
+    m_mediaPlayer->open(m_discoveredMediaList->at(index));
+
+    emit mediaOpened();
 }
 
 void VlcManager::pause()
@@ -48,8 +66,6 @@ void VlcManager::resume()
 void VlcManager::stop()
 {
     m_mediaPlayer->stop();
-
-    delete m_media;
 }
 
 QString VlcManager::buildMRL(const QString ip, int port)
@@ -76,13 +92,49 @@ VlcManager::VlcManager(QObject *parent)
 
     m_instance = new VlcInstance(args);
     m_mediaPlayer = new VlcMediaPlayer(m_instance);
+    m_mediaDiscoverer = new VlcMediaDiscoverer("sap", m_instance);
+    m_discoveredMediaList = new VlcMediaList(m_instance);
 
     connect(m_mediaPlayer, &VlcMediaPlayer::error,
             [this](){
         emit errorOccured(VlcError::errmsg());
     });
+
+    connect(m_mediaDiscoverer, &VlcMediaDiscoverer::mediaDiscovered, this,
+            [this](VlcMedia *media, int index){
+        VlcMetaManager metaManager(media);
+        emit mediaDiscovered(metaManager.title());
+    });
+    connect(m_mediaDiscoverer, &VlcMediaDiscoverer::mediaLost, this,
+            [this](VlcMedia *media, int index){
+        emit mediaLost(index);
+    });
 }
 
 VlcManager::~VlcManager()
 {
+    delete m_discoveredMediaList;
+    delete m_mediaDiscoverer;
+    delete m_mediaPlayer;
+    delete m_media;
+}
+
+void VlcManager::createMedia(const QString &ip, int port)
+{
+    m_media = new VlcMedia(buildMRL(ip, port), m_instance);
+}
+
+void VlcManager::clearMedia()
+{
+    if (m_media) {
+        m_media->deleteLater();
+    }
+
+    m_media = nullptr;
+}
+
+void VlcManager::resetMedia(const QString &ip, int port)
+{
+    clearMedia();
+    createMedia(ip, port);
 }
