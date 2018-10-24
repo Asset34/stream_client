@@ -93,7 +93,7 @@ VlcManager::VlcManager(QObject *parent)
     m_instance = new VlcInstance(args);
     m_mediaPlayer = new VlcMediaPlayer(m_instance);
     m_mediaDiscoverer = new VlcMediaDiscoverer("sap", m_instance);
-    m_discoveredMediaList = new VlcMediaList(m_instance);
+    m_discoveredMediaList = m_mediaDiscoverer->getList();
 
     connect(m_mediaPlayer, &VlcMediaPlayer::error,
             [this](){
