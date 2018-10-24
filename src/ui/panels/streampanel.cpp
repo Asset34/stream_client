@@ -14,6 +14,8 @@ StreamPanel::StreamPanel(QWidget *parent)
 
     // Create video widget
     m_videoWidget = new VlcWidgetVideo;
+    m_videoWidget->setFrameStyle(QFrame::Box | QFrame::Sunken);
+    m_videoWidget->setLineWidth(1);
     m_videoWidget->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
     manager.setVideoWidget(m_videoWidget);
 
