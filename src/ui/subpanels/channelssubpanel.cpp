@@ -1,69 +1,51 @@
-#include "controlsubpanel.hpp"
+#include "channelssubpanel.hpp"
 
-#include <QHBoxLayout>
+#include <QVBoxLayout>
+#include <QListWidget>
 #include <QPushButton>
-#include <VLCQtWidgets/WidgetVolumeSlider.h>
 
-#include <streamclientmanager.hpp>
+#include <vlcmanager.hpp>
 
-ControlSubpanel::ControlSubpanel(QWidget *parent)
+ChannelsSubpanel::ChannelsSubpanel(QWidget *parent)
     : QGroupBox(parent)
 {
-    StreamClientManager &streamManager = StreamClientManager::getInstance();
+    VlcManager &manager = VlcManager::getInstance();
 
-    // Create pause button
-    m_pauseButton = new QPushButton("Pause");
-    m_pauseButton->setCheckable(true);
-    m_pauseButton->setChecked(false);
-    m_pauseButton->setEnabled(false);
+    // Create channels list
+    m_channelsList = new QListWidget;
 
-    // Create stop button
-    m_stopButton = new QPushButton("Stop");
-    m_stopButton->setEnabled(false);
-
-    // Create volume slider
-    m_volumeSlider = new VlcWidgetVolumeSlider;
-    streamManager.setVolumeWidget(m_volumeSlider);
+    // Create connect button
+    m_connectButton = new QPushButton("Connect");
 
     // Create layout
-    m_layout = new QHBoxLayout;
+    m_layout = new QVBoxLayout;
     m_layout->setContentsMargins(0, 0, 0, 0);
-    m_layout->addWidget(m_pauseButton);
-    m_layout->addWidget(m_stopButton);
-    m_layout->addWidget(m_volumeSlider);
+    m_layout->addWidget(m_channelsList);
+    m_layout->addWidget(m_connectButton);
 
     // Create widget
-    setTitle("Control");
+    setTitle("Channels");
     setContentsMargins(5, 20, 5, 5);
     setLayout(m_layout);
 
     // Create connections
-    connect(m_pauseButton, &QPushButton::clicked,
-            [this, &streamManager](bool checked){
-        if (checked) {
-            streamManager.pause();
+    connect(&manager, &VlcManager::mediaDiscovered,
+            [this](QString name){
+        m_channelsList->addItem(name);
+    });
+    connect(&manager, &VlcManager::mediaLost,
+            [this](int index){
+        QListWidgetItem *item = m_channelsList->takeItem(index);
 
-            m_pauseButton->setText("Resume");
+        delete item;
+    });
+    connect(m_connectButton, &QPushButton::clicked,
+            [this, &manager](){
+        int index = m_channelsList->currentRow();
+        if (index < 0 || index >= m_channelsList->count()) {
+            return;
         }
-        else {
-            streamManager.resume();
 
-            m_pauseButton->setText("Resume");
-        }
+        manager.openDiscovered(index);
     });
-    connect(m_stopButton, &QPushButton::clicked,
-            [this, &streamManager](){
-            streamManager.stop();
-
-            m_stopButton->setEnabled(false);
-    });
-    connect(&streamManager, &StreamClientManager::streamOpened,
-            [this, &streamManager](){
-        m_pauseButton->setEnabled(true);
-        m_stopButton->setEnabled(true);
-    });
-}
-
-ControlSubpanel::~ControlSubpanel()
-{
 }

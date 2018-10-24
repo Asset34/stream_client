@@ -5,6 +5,7 @@
 
 class QVBoxLayout;
 class AddressSubpanel;
+class ChannelsSubpanel;
 
 class ConnectPanel : public QWidget
 {
@@ -17,6 +18,7 @@ private:
     QVBoxLayout *m_layout;
 
     AddressSubpanel *m_addressSubpanel;
+    ChannelsSubpanel *m_channelsSubpanel;
 
 };
 

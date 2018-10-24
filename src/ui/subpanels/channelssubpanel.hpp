@@ -1,28 +1,26 @@
-#ifndef CONTROLSUBPANEL_HPP
-#define CONTROLSUBPANEL_HPP
+#ifndef CHANNELSSUBPANEL_HPP
+#define CHANNELSSUBPANEL_HPP
 
 #include <QGroupBox>
 
-class QHBoxLayout;
+class QVBoxLayout;
+class QListWidget;
 class QPushButton;
-class VlcWidgetVolumeSlider;
 
-class ControlSubpanel : public QGroupBox
+class ChannelsSubpanel : public QGroupBox
 {
     Q_OBJECT
 
 public:
-    ControlSubpanel(QWidget *parent = nullptr);
-    virtual ~ControlSubpanel();
+    explicit ChannelsSubpanel(QWidget *parent = nullptr);
 
 private:
-    QHBoxLayout *m_layout;
+    QVBoxLayout *m_layout;
 
-    QPushButton *m_pauseButton;
-    QPushButton *m_stopButton;
+    QListWidget *m_channelsList;
 
-    VlcWidgetVolumeSlider *m_volumeSlider;
+    QPushButton *m_connectButton;
 
 };
 
-#endif // CONTROLSUBPANEL_HPP
+#endif // CHANNELSSUBPANEL_HPP

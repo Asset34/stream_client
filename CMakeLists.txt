@@ -16,6 +16,7 @@ set (SOURCES
     ${SOURCES_DIR}/ui/widgets/ipinputbox.cpp
     ${SOURCES_DIR}/ui/subpanels/addresssubpanel.cpp
     ${SOURCES_DIR}/ui/subpanels/controlsubpanel.cpp
+    ${SOURCES_DIR}/ui/subpanels/channelssubpanel.cpp
     ${SOURCES_DIR}/ui/panels/connectpanel.cpp
     ${SOURCES_DIR}/ui/panels/streampanel.cpp
     ${SOURCES_DIR}/ui/windows/mainwindow.cpp
@@ -26,6 +27,7 @@ set (HEADERS
     ${HEADERS_DIR}/ui/widgets/ipinputbox.hpp
     ${HEADERS_DIR}/ui/subpanels/addresssubpanel.hpp
     ${HEADERS_DIR}/ui/subpanels/controlsubpanel.hpp
+    ${HEADERS_DIR}/ui/subpanels/channelssubpanel.hpp
     ${HEADERS_DIR}/ui/panels/connectpanel.hpp
     ${HEADERS_DIR}/ui/panels/streampanel.hpp
     ${HEADERS_DIR}/ui/windows/mainwindow.hpp
