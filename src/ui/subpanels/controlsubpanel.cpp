@@ -48,7 +48,7 @@ ControlSubpanel::ControlSubpanel(QWidget *parent)
         else {
             manager.resume();
 
-            m_pauseButton->setText("Resume");
+            m_pauseButton->setText("Pause");
         }
     });
     connect(m_stopButton, &QPushButton::clicked,
