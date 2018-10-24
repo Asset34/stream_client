@@ -63,12 +63,15 @@ ControlSubpanel::ControlSubpanel(QWidget *parent)
     connect(m_stopButton, &QPushButton::clicked,
             [this, &manager](){
             manager.stop();
-
-            m_stopButton->setEnabled(false);
     });
     connect(&manager, &VlcManager::mediaOpened,
             [this, &manager](){
         m_pauseButton->setEnabled(true);
         m_stopButton->setEnabled(true);
+    });
+    connect(&manager, &VlcManager::mediaClosed,
+            [this, &manager](){
+        m_pauseButton->setEnabled(false);
+        m_stopButton->setEnabled(false);
     });
 }

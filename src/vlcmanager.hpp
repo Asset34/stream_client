@@ -52,6 +52,7 @@ private:
 
 signals:
     void mediaOpened();
+    void mediaClosed();
     void mediaDiscovered(QString name);
     void mediaLost(int index);
     void errorOccured(QString error);

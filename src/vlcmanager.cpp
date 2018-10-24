@@ -66,6 +66,8 @@ void VlcManager::resume()
 void VlcManager::stop()
 {
     m_mediaPlayer->stop();
+
+    emit mediaClosed();
 }
 
 QString VlcManager::buildMRL(const QString ip, int port)
