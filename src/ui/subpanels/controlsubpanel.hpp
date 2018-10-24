@@ -4,6 +4,7 @@
 #include <QGroupBox>
 
 class QHBoxLayout;
+class QLabel;
 class QPushButton;
 class VlcWidgetVolumeSlider;
 
@@ -19,6 +20,8 @@ private:
 
     QPushButton *m_pauseButton;
     QPushButton *m_stopButton;
+
+    QLabel *m_volumeLabel;
 
     VlcWidgetVolumeSlider *m_volumeSlider;
 

@@ -1,6 +1,7 @@
 #include "controlsubpanel.hpp"
 
 #include <QHBoxLayout>
+#include <QLabel>
 #include <QPushButton>
 #include <VLCQtWidgets/WidgetVolumeSlider.h>
 
@@ -21,8 +22,13 @@ ControlSubpanel::ControlSubpanel(QWidget *parent)
     m_stopButton = new QPushButton("Stop");
     m_stopButton->setEnabled(false);
 
+    // Create volume label
+    m_volumeLabel = new QLabel("Volume:");
+
     // Create volume slider
-    m_volumeSlider = new VlcWidgetVolumeSlider;
+    m_volumeSlider = new VlcWidgetVolumeSlider(Qt::Horizontal);
+    m_volumeSlider->setMinimumWidth(100);
+    m_volumeSlider->setVolume(50);
     manager.setVolumeWidget(m_volumeSlider);
 
     // Create layout
@@ -30,6 +36,8 @@ ControlSubpanel::ControlSubpanel(QWidget *parent)
     m_layout->setContentsMargins(0, 0, 0, 0);
     m_layout->addWidget(m_pauseButton);
     m_layout->addWidget(m_stopButton);
+    m_layout->addStretch(1);
+    m_layout->addWidget(m_volumeLabel);
     m_layout->addWidget(m_volumeSlider);
 
     // Create widget
