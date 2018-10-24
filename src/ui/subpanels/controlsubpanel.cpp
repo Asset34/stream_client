@@ -39,6 +39,7 @@ ControlSubpanel::ControlSubpanel(QWidget *parent)
     m_layout->addStretch(1);
     m_layout->addWidget(m_volumeLabel);
     m_layout->addWidget(m_volumeSlider);
+    m_layout->setSizeConstraint(QLayout::SetMinAndMaxSize);
 
     // Create widget
     setTitle("Control");
