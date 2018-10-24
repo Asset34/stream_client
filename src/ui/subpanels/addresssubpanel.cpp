@@ -43,7 +43,3 @@ AddressSubpanel::AddressSubpanel(QWidget *parent)
         );
     });
 }
-
-AddressSubpanel::~AddressSubpanel()
-{
-}

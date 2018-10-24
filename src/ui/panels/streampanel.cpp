@@ -30,7 +30,3 @@ StreamPanel::StreamPanel(QWidget *parent)
     setLayout(m_layout);
     setContentsMargins(5, 5, 5, 5);
 }
-
-StreamPanel::~StreamPanel()
-{
-}

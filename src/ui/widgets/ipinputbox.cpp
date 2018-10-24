@@ -38,10 +38,6 @@ IpInputBox::IpInputBox(QWidget *parent)
     setLayout(m_layout);
 }
 
-IpInputBox::~IpInputBox()
-{
-}
-
 QString IpInputBox::getIp() const
 {
     return m_ipLineEdit->text();

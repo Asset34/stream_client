@@ -44,7 +44,3 @@ MainWindow::MainWindow(QWidget *parent)
         errorBox.exec();
     });
 }
-
-MainWindow::~MainWindow()
-{
-}

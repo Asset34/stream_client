@@ -63,3 +63,7 @@ ControlSubpanel::ControlSubpanel(QWidget *parent)
         m_stopButton->setEnabled(true);
     });
 }
+
+ControlSubpanel::~ControlSubpanel()
+{
+}
