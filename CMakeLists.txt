@@ -12,7 +12,7 @@ set(CMAKE_AUTOMOC ON)
 
 set (SOURCES
     ${SOURCES_DIR}/main.cpp
-    ${SOURCES_DIR}/streamclientmanager.cpp
+    ${SOURCES_DIR}/vlcmanager.cpp
     ${SOURCES_DIR}/ui/widgets/ipinputbox.cpp
     ${SOURCES_DIR}/ui/subpanels/addresssubpanel.cpp
     ${SOURCES_DIR}/ui/subpanels/controlsubpanel.cpp
@@ -22,7 +22,7 @@ set (SOURCES
     )
 
 set (HEADERS
-    ${HEADERS_DIR}/streamclientmanager.hpp
+    ${HEADERS_DIR}/vlcmanager.hpp
     ${HEADERS_DIR}/ui/widgets/ipinputbox.hpp
     ${HEADERS_DIR}/ui/subpanels/addresssubpanel.hpp
     ${HEADERS_DIR}/ui/subpanels/controlsubpanel.hpp
