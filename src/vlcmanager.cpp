@@ -115,7 +115,6 @@ VlcManager::VlcManager(QObject *parent)
 
 VlcManager::~VlcManager()
 {
-    delete m_discoveredMediaList;
     delete m_mediaDiscoverer;
     delete m_mediaPlayer;
     delete m_media;
