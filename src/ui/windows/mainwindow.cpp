@@ -26,7 +26,7 @@ MainWindow::MainWindow(QWidget *parent)
     // Create connect panel
     m_connectPanel = new ConnectPanel;
     m_connectPanel->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
-    dock = new QDockWidget("Connect", this);
+    dock = new QDockWidget("Connection", this);
     dock->setContentsMargins(0, 0, 0, 0);
     dock->setWidget(m_connectPanel);
     addDockWidget(Qt::RightDockWidgetArea, dock);
